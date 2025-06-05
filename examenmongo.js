@@ -1866,6 +1866,10 @@ db.students.insertMany([{
   db.students.find({age:{$lt:18}},{code:1,name:1,hobbies:1});
   //8.Elimina la propiedad active de todos los documentos.
   db.update.updateMany({},{$unset:{active:""}})
+  //9.Eliminar el hobby Ciclismo del estudiante con código 2354.
+  db.students.updateOne({code:"2354"},{$pull:{hobbies:"Ciclismo"}})
+  //10Eliminar los hobbies Lectura y Senderismo del estudiante con código 3875.
+  db.students.updateOne({code:"3875"},{$pullAll:{hobbies:"Ciclismo",hobbies:"Senderismo"}})
   //11.Eliminar al estudiante con código 9241.
   db.students.deleteOne({code:"9241"});
   //12 Eliminar todos los estudiantes de la ciudad de Barranquilla.
